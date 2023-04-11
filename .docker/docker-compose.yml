@@ -1,0 +1,19 @@
+version: "3.8"
+
+services:
+
+  localstack:
+    image: localstack/localstack:latest
+    ports:
+      - '4566-4597:4566-4597'
+    environment:
+      - DEBUG=1
+      - DOCKER_HOST=unix:///var/run/docker.sock
+      - SERVICES=sqs,dynamodb
+      - AWS_DEFAULT_REGION=sa-east-1      
+      - AWS_ACCESS_KEY_ID=dummy
+      - AWS_SECRET_ACCESS_KEY=dummy
+      - AWS_DEFAULT_OUTPUT=text
+    volumes:
+      - "${TMPDIR:-/tmp/localstack}:/tmp/localstack"
+      - "/var/run/docker.sock:/var/run/docker.sock"
