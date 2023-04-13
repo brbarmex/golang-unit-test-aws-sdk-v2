@@ -19,40 +19,21 @@ aws --endpoint-url=http://localhost:4566 sqs list-queues
 
 echo "########### Putting one message to the queue ###########"
 aws --endpoint-url=http://localhost:4566 sqs send-message --queue-url=http://localhost:4566/000000000000/$TEST_SQS \
-    --message-body={'{"id": "266fbb42-aee6-4402-a965-e55f5273c142",
-                      "fullName": "Bruno Melo",
-                      "phoneNumber": "(11) 99528-3697",
-                      "address": "Suite 011 37845 Kub Flat, Trompmouth, WY 29493",
-                      "createdAt": "2015-10-06",
-                      "purchaseTransactions": [
-                              {
-                              "id": "96db4816-7f40-43e5-ba63-573730e73e1f",
-                              "paymentType": "JCB",
-                              "amount": 60.47,
-                              "createdAt": "2017-07-01"
-                                }
-                              ]}'}
+    --message-body='{"id":"266fbb42-aee6-4402-a965-e55f5273c142","content":"266fbb42-aee6-4402-a965-e55f5273c142","createdAt":"2023-04-02T15:04:05Z07:00"}'
 
 aws --endpoint-url=http://localhost:4566 sqs receive-message --queue-url=http://localhost:4566/000000000000/$TEST_SQS
 
-
 aws dynamodb --endpoint-url=http://localhost:4566 create-table \
-    --table-name CustomerEligibility \
+    --table-name Metadatas \
     --attribute-definitions \
-        AttributeName=Customer,AttributeType=S \
-        AttributeName=Detail,AttributeType=S \
+        AttributeName=Id,AttributeType=S \
+        AttributeName=Value,AttributeType=S \
     --key-schema \
-        AttributeName=Customer,KeyType=HASH \
-        AttributeName=Detail,KeyType=RANGE \
+        AttributeName=Id,KeyType=HASH \
+        AttributeName=Value,KeyType=RANGE \
 --provisioned-throughput \
         ReadCapacityUnits=100,WriteCapacityUnits=100
 
-aws --endpoint-url=http://localhost:4566 dynamodb put-item \
-    --table-name CustomerEligibility  \
-    --item \
-        '{"Customer": {"S": "xiriu"}, "Detail": {"S": "Call Me Today"}, "AlbumTitle": {"S": "Somewhat Famous"}, "Awards": {"N": "1"}}'
-
-
 aws --endpoint-url=http://localhost:4566 --region=sa-east-1  dynamodb list-tables
 
-aws dynamodb scan --endpoint-url=http://localhost:4566 --table-name CustomerEligibility
+aws dynamodb scan --endpoint-url=http://localhost:4566 --table-name Metadatas
