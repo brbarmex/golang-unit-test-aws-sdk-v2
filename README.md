@@ -2,6 +2,8 @@
 
 <img src="/docs/red-green-refactor.png"  width="550" height="350">
 
+[Blog](https://blog.gedai.dev/posts/2023/unit-test-with-aws-sdk-v2-golang/)
+
 This repository contains a Go project that shows an example of how to write unit tests for AWS SDK V2 operations in Go.
 
 The project uses the AWS SDK V2 for Go and the testing framework testing to write unit tests for operations that interact with AWS services.
