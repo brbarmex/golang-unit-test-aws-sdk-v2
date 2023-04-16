@@ -1,5 +1,7 @@
 # Golang: Test unit using AWS SDK for GO.
 
+<img src="/docs/Images/red-green-refactor.png"  width="550" height="250">
+
 This repository contains a Go project that shows an example of how to write unit tests for AWS SDK V2 operations in Go.
 
 The project uses the AWS SDK V2 for Go and the testing framework testing to write unit tests for operations that interact with AWS services.
