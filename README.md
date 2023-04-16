@@ -1,6 +1,6 @@
 # Golang: Test unit using AWS SDK for GO.
 
-<img src="/docs/red-green-refactor.png"  width="550" height="250">
+<img src="/docs/red-green-refactor.png"  width="550" height="350">
 
 This repository contains a Go project that shows an example of how to write unit tests for AWS SDK V2 operations in Go.
 
