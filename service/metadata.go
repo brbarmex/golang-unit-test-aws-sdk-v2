@@ -20,8 +20,8 @@ type MetadataInput struct {
 }
 
 type metadataService struct {
-	database infra.DbInfra
-	queue    infra.QueueInfra
+	database infra.DynamoAPI
+	queue    infra.SQSAPI
 }
 
 func (service *metadataService) Proccess(ctx context.Context) error {
@@ -67,7 +67,7 @@ func (service *metadataService) Proccess(ctx context.Context) error {
 	return nil
 }
 
-func NewCustomerService(queue infra.QueueInfra, db infra.DbInfra) *metadataService {
+func NewCustomerService(queue infra.SQSAPI, db infra.DynamoAPI) *metadataService {
 	return &metadataService{
 		queue:    queue,
 		database: db,

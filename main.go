@@ -23,7 +23,6 @@ func main() {
 
 	infraDynamo := infra.NewDatabase(dynamodb.NewFromConfig(awsCfg))
 	infraSqs := infra.NewQueueInfra(sqs.NewFromConfig(awsCfg))
-
 	service := service.NewCustomerService(infraSqs, infraDynamo)
 
 	err = service.Proccess(ctx)
